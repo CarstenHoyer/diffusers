@@ -727,7 +727,7 @@ def main():
                 latent_model_input = torch.cat([noisy_latents, mask, masked_latents], dim=1)
 
                 # Get the text embedding for conditioning
-                print(batch)
+                print(batch["input_ids"])
                 encoder_hidden_states = text_encoder(batch["input_ids"])[0]
 
                 # Predict the noise residual
