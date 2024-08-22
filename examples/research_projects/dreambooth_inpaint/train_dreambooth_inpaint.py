@@ -727,10 +727,11 @@ def main():
                 latent_model_input = torch.cat([noisy_latents, mask, masked_latents], dim=1)
 
                 # Get the text embedding for conditioning
+                print(batch)
                 encoder_hidden_states = text_encoder(batch["input_ids"])[0]
 
                 # Predict the noise residual
-                noise_pred = unet(latent_model_input, timesteps, encoder_hidden_states, encoder_hidden_states={}).sample
+                noise_pred = unet(latent_model_input, timesteps, encoder_hidden_states).sample
 
                 # Get the target for loss depending on the prediction type
                 if noise_scheduler.config.prediction_type == "epsilon":
